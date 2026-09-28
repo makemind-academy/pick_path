@@ -1,0 +1,73 @@
+{
+  "type": "application",
+  "title": "Pick Path",
+  "version": "1.0.0",
+  "initialRoute": "/pick",
+  "routes": {
+    "/pick": "ui://pages/pick"
+  },
+  "theme": {
+    "mode": "light",
+    "color": {
+      "primary": "#0369a1",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#dcecf7",
+      "onPrimaryContainer": "#06304a",
+      "surface": "#ffffff",
+      "onSurface": "#0f1a22",
+      "surfaceContainerHighest": "#f1f5f8",
+      "onSurfaceVariant": "#7a8894",
+      "outline": "#e1e8ee",
+      "outlineVariant": "#e1e8ee",
+      "error": "#b3261e",
+      "onError": "#ffffff",
+      "warning": "#a4620a",
+      "onWarning": "#ffffff",
+      "inverseSurface": "#0f1a22",
+      "inverseOnSurface": "#ffffff"
+    },
+    "spacing": {
+      "xxs": 2,
+      "xs": 4,
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 32,
+      "2xl": 48
+    },
+    "shape": {
+      "none": 0,
+      "extraSmall": 4,
+      "small": 8,
+      "medium": 12,
+      "large": 16,
+      "extraLarge": 28,
+      "full": 999
+    },
+    "fonts": {
+      "JetBrainsMono": {
+        "source": "asset",
+        "family": "JetBrainsMono"
+      }
+    }
+  },
+  "state": {
+    "initial": {
+      "rows": [],
+      "stops": 0,
+      "done": 0,
+      "typedWalk": "",
+      "pathWalk": "",
+      "saved": "",
+      "shortCount": 0,
+      "shortLine": "",
+      "aisleRule": "",
+      "notice": ""
+    }
+  },
+  "onInit": {
+    "type": "tool",
+    "tool": "pick.state",
+    "params": {}
+  }
+}

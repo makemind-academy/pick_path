@@ -1,0 +1,483 @@
+{
+  "type": "page",
+  "metadata": {
+    "title": "Pick list"
+  },
+  "onInit": {
+    "type": "tool",
+    "tool": "pick.state",
+    "params": {}
+  },
+  "state": {
+    "initial": {
+      "rows": [],
+      "stops": 0,
+      "done": 0,
+      "typedWalk": "",
+      "pathWalk": "",
+      "saved": "",
+      "shortCount": 0,
+      "shortLine": "",
+      "aisleRule": "",
+      "notice": ""
+    }
+  },
+  "content": {
+    "type": "container",
+    "decoration": {
+      "color": "{{theme.color.surfaceContainerHighest}}"
+    },
+    "child": {
+      "type": "linear",
+      "direction": "vertical",
+      "children": [
+        {
+          "type": "container",
+          "padding": {
+            "left": 22,
+            "right": 22,
+            "top": 20,
+            "bottom": 16
+          },
+          "decoration": {
+            "color": "{{theme.color.surface}}",
+            "border": {
+              "bottom": true,
+              "color": "{{theme.color.outline}}",
+              "width": 1
+            }
+          },
+          "child": {
+            "type": "linear",
+            "direction": "horizontal",
+            "crossAxisAlignment": "center",
+            "children": [
+              {
+                "type": "linear",
+                "direction": "vertical",
+                "children": [
+                  {
+                    "type": "text",
+                    "content": "AISLE 3–7 · CART 2",
+                    "style": {
+                      "fontSize": 12,
+                      "color": "{{theme.color.onSurfaceVariant}}",
+                      "letterSpacing": 2.0
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "content": "Pick list",
+                    "style": {
+                      "fontSize": 21,
+                      "color": "{{theme.color.onSurface}}",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ],
+                "gap": 4
+              },
+              {
+                "type": "spacer"
+              },
+              {
+                "type": "linear",
+                "direction": "vertical",
+                "children": [
+                  {
+                    "type": "text",
+                    "content": "STOP",
+                    "style": {
+                      "fontSize": 11,
+                      "color": "{{theme.color.onSurfaceVariant}}",
+                      "letterSpacing": 1.6
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "content": "{{done}} / {{stops}}",
+                    "style": {
+                      "fontSize": 26,
+                      "color": "{{theme.color.onSurface}}",
+                      "fontFamily": "JetBrainsMono"
+                    }
+                  }
+                ],
+                "gap": 4,
+                "crossAxisAlignment": "end"
+              }
+            ]
+          }
+        },
+        {
+          "type": "container",
+          "padding": {
+            "left": 24,
+            "right": 24,
+            "top": 10,
+            "bottom": 4
+          },
+          "child": {
+            "type": "linear",
+            "direction": "horizontal",
+            "crossAxisAlignment": "center",
+            "children": [
+              {
+                "type": "button",
+                "label": "Took 6",
+                "variant": "outlined",
+                "onTap": {
+                  "type": "tool",
+                  "tool": "pick.take",
+                  "params": {
+                    "count": 6
+                  }
+                }
+              },
+              {
+                "type": "box",
+                "width": 10
+              },
+              {
+                "type": "button",
+                "label": "Took 3",
+                "variant": "outlined",
+                "onTap": {
+                  "type": "tool",
+                  "tool": "pick.take",
+                  "params": {
+                    "count": 3
+                  }
+                }
+              },
+              {
+                "type": "box",
+                "width": 10
+              },
+              {
+                "type": "button",
+                "label": "Took 2",
+                "variant": "outlined",
+                "onTap": {
+                  "type": "tool",
+                  "tool": "pick.take",
+                  "params": {
+                    "count": 2
+                  }
+                }
+              },
+              {
+                "type": "box",
+                "width": 10
+              },
+              {
+                "type": "button",
+                "label": "Took 1",
+                "variant": "outlined",
+                "onTap": {
+                  "type": "tool",
+                  "tool": "pick.take",
+                  "params": {
+                    "count": 1
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "expanded",
+          "child": {
+            "type": "container",
+            "padding": {
+              "left": 22,
+              "right": 22,
+              "top": 16,
+              "bottom": 8
+            },
+            "child": {
+              "type": "container",
+              "padding": {
+                "all": 18
+              },
+              "decoration": {
+                "color": "{{theme.color.surface}}",
+                "borderRadius": 14,
+                "border": {
+                  "color": "{{theme.color.outline}}",
+                  "width": 1
+                }
+              },
+              "child": {
+                "type": "list",
+                "items": "{{rows}}",
+                "shrinkWrap": true,
+                "itemSpacing": 10,
+                "emptyMessage": "Nothing to pick on this cart",
+                "itemTemplate": {
+                  "type": "linear",
+                  "direction": "horizontal",
+                  "crossAxisAlignment": "center",
+                  "children": [
+                    {
+                      "type": "container",
+                      "width": 44,
+                      "child": {
+                        "type": "text",
+                        "content": "{{item.stop}}",
+                        "textAlign": "start",
+                        "maxLines": 1,
+                        "style": {
+                          "fontSize": 15,
+                          "color": "{{theme.color.primary}}",
+                          "textAlign": "start",
+                          "fontFamily": "JetBrainsMono"
+                        }
+                      },
+                      "alignment": "centerStart"
+                    },
+                    {
+                      "type": "box",
+                      "width": 0
+                    },
+                    {
+                      "type": "container",
+                      "width": 90,
+                      "child": {
+                        "type": "text",
+                        "content": "{{item.slot}}",
+                        "textAlign": "start",
+                        "maxLines": 1,
+                        "style": {
+                          "fontSize": 13,
+                          "color": "{{theme.color.onSurfaceVariant}}",
+                          "textAlign": "start",
+                          "fontFamily": "JetBrainsMono"
+                        }
+                      },
+                      "alignment": "centerStart"
+                    },
+                    {
+                      "type": "box",
+                      "width": 0
+                    },
+                    {
+                      "type": "expanded",
+                      "child": {
+                        "type": "text",
+                        "content": "{{item.name}}",
+                        "style": {
+                          "fontSize": 16,
+                          "color": "{{theme.color.onSurface}}"
+                        }
+                      }
+                    },
+                    {
+                      "type": "box",
+                      "width": 0
+                    },
+                    {
+                      "type": "container",
+                      "width": 150,
+                      "child": {
+                        "type": "text",
+                        "content": "{{item.state}}",
+                        "textAlign": "end",
+                        "maxLines": 1,
+                        "style": {
+                          "fontSize": 13,
+                          "color": "{{theme.color.warning}}",
+                          "textAlign": "end",
+                          "fontFamily": "JetBrainsMono"
+                        }
+                      },
+                      "alignment": "centerEnd"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "container",
+          "padding": {
+            "left": 22,
+            "right": 22,
+            "top": 6,
+            "bottom": 8
+          },
+          "child": {
+            "type": "container",
+            "padding": {
+              "all": 18
+            },
+            "decoration": {
+              "color": "{{theme.color.surface}}",
+              "borderRadius": 14,
+              "border": {
+                "color": "{{theme.color.outline}}",
+                "width": 1
+              }
+            },
+            "child": {
+              "type": "linear",
+              "direction": "vertical",
+              "children": [
+                {
+                  "type": "linear",
+                  "direction": "horizontal",
+                  "crossAxisAlignment": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "THE WALK",
+                      "style": {
+                        "fontSize": 11,
+                        "color": "{{theme.color.onSurfaceVariant}}",
+                        "letterSpacing": 1.6
+                      }
+                    },
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "content": "{{saved}} saved",
+                      "style": {
+                        "fontSize": 16,
+                        "color": "{{theme.color.primary}}",
+                        "fontFamily": "JetBrainsMono"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "linear",
+                  "direction": "horizontal",
+                  "crossAxisAlignment": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "As typed",
+                      "style": {
+                        "fontSize": 13,
+                        "color": "{{theme.color.onSurfaceVariant}}"
+                      }
+                    },
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "content": "{{typedWalk}}",
+                      "style": {
+                        "fontSize": 14,
+                        "color": "{{theme.color.onSurfaceVariant}}",
+                        "fontFamily": "JetBrainsMono"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "linear",
+                  "direction": "horizontal",
+                  "crossAxisAlignment": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "This route",
+                      "style": {
+                        "fontSize": 13,
+                        "color": "{{theme.color.onSurfaceVariant}}"
+                      }
+                    },
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "content": "{{pathWalk}}",
+                      "style": {
+                        "fontSize": 15,
+                        "color": "{{theme.color.onSurface}}",
+                        "fontFamily": "JetBrainsMono"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "divider",
+                  "color": "{{theme.color.outline}}"
+                },
+                {
+                  "type": "linear",
+                  "direction": "horizontal",
+                  "crossAxisAlignment": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Short",
+                      "style": {
+                        "fontSize": 13,
+                        "color": "{{theme.color.onSurfaceVariant}}"
+                      }
+                    },
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "text",
+                      "content": "{{shortLine}}",
+                      "style": {
+                        "fontSize": 13,
+                        "color": "{{theme.color.onSurface}}"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "gap": 10
+            }
+          }
+        },
+        {
+          "type": "container",
+          "padding": {
+            "left": 22,
+            "right": 22,
+            "top": 4,
+            "bottom": 18
+          },
+          "child": {
+            "type": "linear",
+            "direction": "horizontal",
+            "crossAxisAlignment": "center",
+            "children": [
+              {
+                "type": "text",
+                "content": "{{aisleRule}}",
+                "style": {
+                  "fontSize": 13,
+                  "color": "{{theme.color.onSurfaceVariant}}"
+                }
+              },
+              {
+                "type": "spacer"
+              },
+              {
+                "type": "text",
+                "content": "{{notice}}",
+                "style": {
+                  "fontSize": 13,
+                  "color": "{{theme.color.primary}}"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "crossAxisAlignment": "stretch"
+    }
+  }
+}
